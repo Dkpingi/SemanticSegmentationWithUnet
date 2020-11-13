@@ -1,11 +1,11 @@
 import torch
-import torch.nn.functional as F
 import os
 from PIL import Image
 import glob
 import torchvision
 import torchvision.transforms as transforms
 import numpy as np
+
 class DataLoaderSegmentation(torch.utils.data.Dataset):
     def __init__(self, folder_path,  transform=None, train = False):
         super(DataLoaderSegmentation, self).__init__()
@@ -55,6 +55,7 @@ def collate_wrapper(batch):
 class Collator(object):
     def __init__(self, crop_size = (200,200)):
         self.crop_size = crop_size
+        
     def __call__(self, batch):
         size = self.crop_size 
         trans = transforms.ToTensor()
@@ -71,6 +72,7 @@ class Collator(object):
             databatch.append(data)
             labelbatch.append(label)
         return torch.stack(databatch), torch.stack(labelbatch)
+    
 def RandomCrop2im(image, image2, size):
     #i, j, h, w = torchvision.transforms.RandomResizedCrop.get_params(image, scale=(0.08, 1.0), 
      #                                                           ratio=(0.75, 1.3333333333333333))
