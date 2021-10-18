@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 device = torch.device('cuda')
 dtype = torch.float32 
+
 def compute_accuracy(dataloader, model):
     model.eval()
     accuracy = 0

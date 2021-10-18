@@ -1,3 +1,0 @@
-ExperimentName,train_loss,val_loss,test_loss,train_acc,val_acc,test_acc,train_IoU,val_IoU,test_IoU
-exp_name,0.0449,0.0424,0.0563,0.9531,0.9540,0.9464,0.6458,0.6945,0.6657
-exp_name,0.0338,0.0332,0.0418,0.9636,0.9633,0.9604,0.7342,0.7526,0.6937

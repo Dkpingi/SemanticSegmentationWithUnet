@@ -74,16 +74,12 @@ class Collator(object):
         return torch.stack(databatch), torch.stack(labelbatch)
     
 def RandomCrop2im(image, image2, size):
-    #i, j, h, w = torchvision.transforms.RandomResizedCrop.get_params(image, scale=(0.08, 1.0), 
-     #                                                           ratio=(0.75, 1.3333333333333333))
     i,j,h,w = torchvision.transforms.RandomCrop.get_params(image, output_size = size)
-    #image = torchvision.transforms.functional.resized_crop(image, i, j, h, w, size)
-    #image2 = torchvision.transforms.functional.resized_crop(image2, i, j, h, w, size)
     image = torchvision.transforms.functional.crop(image, i, j, h, w)
     image2 = torchvision.transforms.functional.crop(image2, i, j, h, w)
     return image, image2
 
-def RandomFlip2im(image,image2):
+def RandomFlip2im(image, image2):
     p = np.random.choice([0,1])
     q = np.random.choice([0,1])
     if p == 1:
@@ -94,8 +90,8 @@ def RandomFlip2im(image,image2):
         image2 = torchvision.transforms.functional.hflip(image2)
     return image, image2
 
-def RandomRotate2im(image,image2):
+def RandomRotate2im(image, image2):
     angle = np.random.choice([0,90,180,270])
     image = torchvision.transforms.functional.rotate(image, angle)
     image2 = torchvision.transforms.functional.rotate(image2, angle)
-    return image,image2
+    return image, image2
